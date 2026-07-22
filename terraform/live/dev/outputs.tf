@@ -15,3 +15,9 @@ output "private_subnets" {
   value = module.vpc.private_subnet_ids
 
 }
+
+output "alb_security_group_id" {
+
+  value = module.security.alb_sg_id
+
+}
