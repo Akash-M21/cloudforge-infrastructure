@@ -4,7 +4,7 @@ resource "aws_subnet" "public" {
 
   count = length(var.public_subnet_cidrs)
 
-  vpc_id = aws_vpc.this.id
+  vpc_id = aws_vpc.vpc.id
 
   cidr_block = var.public_subnet_cidrs[count.index]
 
@@ -15,7 +15,7 @@ resource "aws_subnet" "public" {
   tags = merge(
     local.common_tags,
     {
-      Name = "${var.project_name}-${var.environment}-public-${count.index + 1}"
+      Name = "${local.project}-public-${count.index + 1}"
 
       "kubernetes.io/role/elb" = "1"
     }
@@ -30,7 +30,7 @@ resource "aws_subnet" "private" {
 
   count = length(var.private_subnet_cidrs)
 
-  vpc_id = aws_vpc.this.id
+  vpc_id = aws_vpc.vpc.id
 
   cidr_block = var.private_subnet_cidrs[count.index]
 
@@ -39,7 +39,7 @@ resource "aws_subnet" "private" {
   tags = merge(
     local.common_tags,
     {
-      Name = "${var.project_name}-${var.environment}-private-${count.index + 1}"
+      Name = "${local.project}-private-${count.index + 1}"
 
       "kubernetes.io/role/internal-elb" = "1"
     }

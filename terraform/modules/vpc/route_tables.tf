@@ -1,20 +1,20 @@
 # Public Route Table
 resource "aws_route_table" "public" {
 
-  vpc_id = aws_vpc.this.id
+  vpc_id = aws_vpc.vpc.id
 
   route {
 
     cidr_block = "0.0.0.0/0"
 
-    gateway_id = aws_internet_gateway.this.id
+    gateway_id = aws_internet_gateway.igw.id
 
   }
 
   tags = merge(
     local.common_tags,
     {
-      Name = "${var.project_name}-${var.environment}-public-rt"
+      Name = "${local.project}-public-rt"
     }
   )
 
@@ -24,20 +24,20 @@ resource "aws_route_table" "public" {
 
 resource "aws_route_table" "private" {
 
-  vpc_id = aws_vpc.this.id
+  vpc_id = aws_vpc.vpc.id
 
   route {
 
     cidr_block = "0.0.0.0/0"
 
-    nat_gateway_id = aws_nat_gateway.this.id
+    nat_gateway_id = aws_nat_gateway.nat.id
 
   }
 
   tags = merge(
     local.common_tags,
     {
-      Name = "${var.project_name}-${var.environment}-private-rt"
+      Name = "${local.project}-private-rt"
     }
   )
 
