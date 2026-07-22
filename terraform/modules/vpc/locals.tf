@@ -1,6 +1,6 @@
 locals {
 
-  project = local.project
+  project = "${var.project_name}-${var.environment}"
 
   common_tags = {
     Project     = var.project_name
