@@ -2,7 +2,7 @@ resource "aws_ecr_repository" "repositories" {
 
   for_each = toset(var.repositories)
 
-  name = "${local.project}/${each.value}"
+  name = "${lower(local.project)}/${lower(each.value)}"
 
   image_tag_mutability = "MUTABLE"
 
