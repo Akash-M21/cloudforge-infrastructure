@@ -65,3 +65,19 @@ module "eks" {
   node_role_arn    = module.iam.eks_node_role_arn
 
 }
+/*
+module "alb" {
+
+  source = "../../modules/alb"
+
+  project_name = var.project_name
+  environment  = var.environment
+  aws_region   = var.aws_region
+
+  cluster_name                       = module.eks.cluster_name
+  cluster_oidc_issuer                = module.eks.oidc_issuer
+  cluster_endpoint                   = module.eks.cluster_endpoint
+  cluster_certificate_authority_data = module.eks.cluster_certificate_authority_data
+
+}
+*/
