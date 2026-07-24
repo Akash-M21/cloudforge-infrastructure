@@ -92,3 +92,7 @@ __pycache__/
 backend.hcl
 terraform/live/*/backend.hcl
 
+# Terraform generated files
+errored.tfstate
+remote.tfstate
+tfplan
